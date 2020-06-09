@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ListaDeNotas from "./components/ListaDeNotas";
 import FormularioCadastro from "./components/FormularioCadastro";
-import ListaDeCategorias from "./components/ListaDeCategorias"
+import ListaDeCategorias from "./components/ListaDeCategorias";
 import "./assets/App.css";
 import "./assets/index.css";
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
 
     this.state = {
       notas: [],
-      categorias:[],
+      categorias: [],
     };
   }
 
@@ -20,6 +20,12 @@ class App extends Component {
     const novoEstado = {
       notas: novoArrayNotas,
     };
+    this.setState(novoEstado);
+  }
+
+  adicionarCategoria(nomeCategoria){
+    const novoArrayCategorias = [...this.state.categorias, nomeCategoria]
+    const novoEstado = {...this.state, categorias:novoArrayCategorias};
     this.setState(novoEstado);
   }
 
@@ -34,7 +40,10 @@ class App extends Component {
       <section className="conteudo">
         <FormularioCadastro criarNota={this.criarNota.bind(this)} />
         <main className="conteudo-principal">
-          <ListaDeCategorias />
+          <ListaDeCategorias
+            adicionarCategoria={this.adicionarCategoria.bind(this)}
+            categorias={this.state.categorias}
+          />
           <ListaDeNotas
             apagarNota={this.deletarNota.bind(this)}
             notas={this.state.notas}
