@@ -14,7 +14,7 @@ export default class Categorias{
         } );
     }
     adicionarCategoria(novaCaegoria){
-        console.log(this.categorias);
         this.categorias.push(novaCaegoria);
+        this.notificar();
     }
 }
